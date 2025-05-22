@@ -1,0 +1,51 @@
+
+body {
+    font-family:Times new roman;
+    background-color:blueviolet;
+    color:black;
+    
+  }
+  
+
+  header {
+    background-color:black;
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  main {
+    padding: 20px;
+  }
+  
+  section {
+    margin-bottom: 20px;
+    background-color:white;
+    padding:10px;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid white;
+  }
+  
+
+  a {
+    color:blue;
+    font-weight: bold;
+  }
+  
+  
+  button {
+    background-color:green;
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color:black;
+  }
+  
