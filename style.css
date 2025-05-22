@@ -1,133 +1,68 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to right, #ffecd2, #fcb69f);
-  color: #333;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
   padding: 20px;
+  background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+  color: #333;
 }
 
-/* Container */
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: auto;
 }
 
-/* Sections */
 section {
   background: white;
-  padding: 25px;
   border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  padding: 25px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-/* Headings */
 h2 {
+  color: #4b0082;
   margin-bottom: 15px;
-  color: #ff6b81;
 }
 
-/* Form Styling */
-form input, form textarea {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 12px;
-  border: 2px solid #ffd6d6;
-  border-radius: 8px;
-  font-size: 16px;
+#quiz p, #joke {
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
-form textarea {
-  resize: vertical;
-  height: 100px;
-}
-
-form button {
-  background: #ff6b81;
+button {
+  background: #4b0082;
   color: white;
-  padding: 12px;
-  width: 100%;
   border: none;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-form button:hover {
-  background: #ff3e57;
-}
-
-#formMessage {
+  padding: 10px 20px;
   margin-top: 10px;
-  font-weight: bold;
-}
-
-/* To-Do List Styling */
-.todo-input {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-
-.todo-input input {
-  flex: 1;
-  padding: 10px;
-  border: 2px solid #c3f0ca;
-  border-radius: 8px;
-}
-
-.todo-input button {
-  background: #45b649;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.todo-input button:hover {
-  background: #2e8b3c;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-li {
-  background: #e2f7e1;
-  margin: 8px 0;
-  padding: 12px;
-  border-radius: 8px;
-  position: relative;
   font-size: 16px;
-  color: #333;
-}
-
-li button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: #e74c3c;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  padding: 5px 10px;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 14px;
+  transition: background 0.3s ease;
 }
 
-li button:hover {
-  background: #c0392b;
+button:hover {
+  background: #5e2b97;
+}
+
+#options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option-btn {
+  background: #eee;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.option-btn:hover {
+  background: #ddd;
 }
 
 /* Responsive Design */
