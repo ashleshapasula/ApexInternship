@@ -1,80 +1,68 @@
-const quizData = [
-  {
-    question: "What is the capital of France?",
-    options: ["Berlin", "Madrid", "Paris", "Rome"],
-    correct: "Paris"
-  },
-  {
-    question: "Which language runs in a web browser?",
-    options: ["Java", "Python", "C", "JavaScript"],
-    correct: "JavaScript"
-  },
-  {
-    question: "Who painted the Mona Lisa?",
-    options: ["Van Gogh", "Da Vinci", "Picasso", "Rembrandt"],
-    correct: "Da Vinci"
+// ---------------- To-Do List ----------------
+let todos = JSON.parse(localStorage.getItem("todos")) || [];
+const todoList = document.getElementById("todoList");
+
+function renderTodos() {
+  todoList.innerHTML = "";
+  todos.forEach((todo, index) => {
+    const li = document.createElement("li");
+    li.textContent = todo;
+    const btn = document.createElement("button");
+    btn.textContent = "X";
+    btn.onclick = () => removeTodo(index);
+    li.appendChild(btn);
+    todoList.appendChild(li);
+  });
+}
+
+function addTodo() {
+  const input = document.getElementById("todoInput");
+  const value = input.value.trim();
+  if (value) {
+    todos.push(value);
+    localStorage.setItem("todos", JSON.stringify(todos));
+    renderTodos();
+    input.value = "";
   }
+}
+
+function removeTodo(index) {
+  todos.splice(index, 1);
+  localStorage.setItem("todos", JSON.stringify(todos));
+  renderTodos();
+}
+
+renderTodos();
+
+// ---------------- Product Listing ----------------
+const products = [
+  { name: "Java Book", category: "Books", rating: 4.5 },
+  { name: "Headphones", category: "Electronics", rating: 4.8 },
+  { name: "Python Book", category: "Books", rating: 4.2 },
+  { name: "Smartphone", category: "Electronics", rating: 4.9 }
 ];
 
-let currentQuestion = 0;
-let score = 0;
-
-function loadQuestion() {
-  const q = quizData[currentQuestion];
-  document.getElementById("question").textContent = q.question;
-  const optionsDiv = document.getElementById("options");
-  optionsDiv.innerHTML = "";
-
-  q.options.forEach(opt => {
-    const btn = document.createElement("div");
-    btn.textContent = opt;
-    btn.className = "option-btn";
-    btn.onclick = () => checkAnswer(opt);
-    optionsDiv.appendChild(btn);
-  });
-
-  document.getElementById("result").textContent = "";
-}
-
-function checkAnswer(answer) {
-  const q = quizData[currentQuestion];
-  const result = document.getElementById("result");
-
-  if (answer === q.correct) {
-    score++;
-    result.textContent = "✅ Correct!";
-    result.style.color = "green";
-  } else {
-    result.textContent = `❌ Wrong! Correct: ${q.correct}`;
-    result.style.color = "red";
-  }
-
-  // Disable options
-  document.querySelectorAll(".option-btn").forEach(btn => {
-    btn.onclick = null;
-    btn.style.pointerEvents = "none";
+function displayProducts(filtered) {
+  const list = document.getElementById("productList");
+  list.innerHTML = "";
+  filtered.forEach(p => {
+    const card = document.createElement("div");
+    card.className = "product-card";
+    card.innerHTML = `<strong>${p.name}</strong><br>Category: ${p.category}<br>Rating: ${p.rating}`;
+    list.appendChild(card);
   });
 }
 
-function nextQuestion() {
-  currentQuestion++;
-  if (currentQuestion < quizData.length) {
-    loadQuestion();
-  } else {
-    document.getElementById("quiz").innerHTML = `<h3>You scored ${score} out of ${quizData.length} 🎉</h3>`;
-  }
+function filterProducts() {
+  const category = document.getElementById("categoryFilter").value;
+  const filtered = category === "all" ? products : products.filter(p => p.category === category);
+  displayProducts(filtered);
 }
 
-loadQuestion();
-
-// API: Get Random Joke
-function fetchJoke() {
-  fetch('https://official-joke-api.appspot.com/random_joke')
-    .then(res => res.json())
-    .then(data => {
-      document.getElementById("joke").textContent = `${data.setup} 😄 ${data.punchline}`;
-    })
-    .catch(() => {
-      document.getElementById("joke").textContent = "Failed to fetch joke. Try again!";
-    });
+function sortProducts() {
+  const sort = document.getElementById("sortRating").value;
+  const sorted = [...products].sort((a, b) => sort === "high" ? b.rating - a.rating : a.rating - b.rating);
+  displayProducts(sorted);
 }
+
+displayProducts(products);
